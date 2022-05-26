@@ -37,7 +37,7 @@ export default function Key() {
     switch (transaction.type) {
       case 0:
         txData = {
-          gasPrice: transaction.gasPrice,
+          // gasPrice: transaction.gasPrice,
           gasLimit: transaction.gasLimit,
           value: transaction.value,
           nonce: transaction.nonce,
@@ -53,10 +53,10 @@ export default function Key() {
           nonce: transaction.nonce,
           data: transaction.data,
           chainId: transaction.chainId,
-          to: transaction.to,
-          type: 2,
-          maxFeePerGas: transaction.maxFeePerGas,
-          maxPriorityFeePerGas: transaction.maxPriorityFeePerGas
+          to: transaction.to
+          // type: 2,
+          // maxFeePerGas: transaction.maxFeePerGas,
+          // maxPriorityFeePerGas: transaction.maxPriorityFeePerGas
         }
         break
       default:
