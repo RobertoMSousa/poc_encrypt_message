@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import Menu from 'components/menu'
 import { ethers, utils } from 'ethers'
 import { base64 } from 'ethers/lib/utils'
 import { useState } from 'react'
@@ -92,9 +94,10 @@ export default function Key() {
 
   return (
     <>
+      <Menu />
       <WalletWrapper>
         <WalletTitle className="wallet">Get public key from </WalletTitle>
-        <TransactioHashForm>
+        {/* <TransactioHashForm>
           <label htmlFor="">TransactionHash</label>
           <TransactioHashInput
             type="text"
@@ -104,7 +107,7 @@ export default function Key() {
             }}
           />
         </TransactioHashForm>
-        <ConnectButton onClick={getPublicKey}>Load Public Key</ConnectButton>
+        <ConnectButton onClick={getPublicKey}>Load Public Key</ConnectButton> */}
         <ConnectButton onClick={requestPublicKey}>
           Request Public Key
         </ConnectButton>

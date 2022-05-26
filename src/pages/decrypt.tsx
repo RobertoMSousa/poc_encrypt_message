@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import axios from 'axios'
 
 import { decryptData } from 'helpers/crypto'
+import Menu from 'components/menu'
 
 export default function Decrypt() {
   const [address, setAddress] = useState<string | undefined>(undefined)
@@ -63,6 +64,7 @@ export default function Decrypt() {
 
   return (
     <>
+      <Menu />
       <WalletWrapper>
         <WalletTitle className="wallet">Wallet connection</WalletTitle>
         {address && <h1>{address}</h1>}

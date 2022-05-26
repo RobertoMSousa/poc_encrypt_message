@@ -3,6 +3,7 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import { create } from 'ipfs-http-client'
 import { encryptData } from 'helpers/crypto'
+import Menu from 'components/menu'
 
 export default function Wallet() {
   const [address, setAddress] = useState<string | undefined>(undefined)
@@ -80,6 +81,7 @@ export default function Wallet() {
 
   return (
     <>
+      <Menu />
       <WalletWrapper>
         <WalletTitle className="wallet">Wallet connection</WalletTitle>
         {address && <h1>address: {address}</h1>}
