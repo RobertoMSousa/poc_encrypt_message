@@ -1,6 +1,7 @@
 import { ethers, BigNumber, utils } from 'ethers'
 import { useState } from 'react'
 import styled from 'styled-components'
+import { create } from 'ipfs-http-client'
 import { encryptData } from 'helpers/crypto'
 
 export default function Wallet() {
@@ -18,6 +19,8 @@ export default function Wallet() {
     undefined
   )
 
+  const [ipfsUrl, setIpfsUrl] = useState<string | undefined>(undefined)
+
   const connectToWallet = async () => {
     if (!window.ethereum) {
       setError('No ethereum browser found')
@@ -29,6 +32,7 @@ export default function Wallet() {
         setSecretMessage(undefined)
         setPublicKey(undefined)
         setEncryptedMessage(undefined)
+        setIpfsUrl(undefined)
         return
       }
 
@@ -60,7 +64,18 @@ export default function Wallet() {
       return
     }
 
-    setEncryptedMessage(await encryptData(publicKey, secretMessage))
+    const encryptedMessage = await encryptData(
+      'C4F47lcpsoqedd+2Qn7ATJxDAbIF63VKx69oPvwfNDQ=',
+      secretMessage
+    )
+
+    setEncryptedMessage(encryptedMessage)
+
+    const client = create('https://ipfs.infura.io:5001/api/v0')
+
+    /* upload the file */
+    const added = await client.add(encryptedMessage)
+    setIpfsUrl(`https://ipfs.infura.io/ipfs/${added.path}`)
   }
 
   return (
@@ -98,6 +113,8 @@ export default function Wallet() {
         {encryptedMessage && (
           <SecretResult> secret: {encryptedMessage}</SecretResult>
         )}
+
+        {ipfsUrl && <SecretResult> ipfsUrl: {ipfsUrl}</SecretResult>}
 
         <ConnectButton onClick={connectToWallet}>
           {address ? 'Disconnect' : 'Connect to wallet'}
