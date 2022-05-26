@@ -67,7 +67,7 @@ export default function Wallet() {
     <>
       <WalletWrapper>
         <WalletTitle className="wallet">Wallet connection</WalletTitle>
-        {address && <h1>adress: {address}</h1>}
+        {address && <h1>address: {address}</h1>}
         {balance && address && (
           <h1>balance: {utils.formatEther(balance)} eth</h1>
         )}
