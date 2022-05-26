@@ -65,10 +65,7 @@ export default function Wallet() {
       return
     }
 
-    const encryptedMessage = await encryptData(
-      'C4F47lcpsoqedd+2Qn7ATJxDAbIF63VKx69oPvwfNDQ=',
-      secretMessage
-    )
+    const encryptedMessage = await encryptData(publicKey, secretMessage)
 
     setEncryptedMessage(encryptedMessage)
 
