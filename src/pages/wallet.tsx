@@ -69,7 +69,7 @@ export default function Wallet() {
 
     setEncryptedMessage(encryptedMessage)
 
-    const client = create('https://ipfs.infura.io:5001/api/v0')
+    const client = create({ url: 'https://ipfs.infura.io:5001/api/v0' })
 
     /* upload the file */
     const added = await client.add(encryptedMessage)
