@@ -11,8 +11,17 @@ export default function Wallet() {
   const [balance, setBalance] = useState<ethers.BigNumber | undefined>(
     BigNumber.from(0)
   )
+  const defaultAddress = JSON.stringify({
+    name: '',
+    houseNumber: '',
+    street: '',
+    city: '',
+    state: '',
+    zip: ''
+  })
+
   const [secretMessage, setSecretMessage] = useState<string | undefined>(
-    undefined
+    defaultAddress
   )
   const [publicKey, setPublicKey] = useState<string | undefined>(undefined)
 
@@ -30,7 +39,7 @@ export default function Wallet() {
       if (address) {
         setAddress(undefined)
         setBalance(undefined)
-        setSecretMessage(undefined)
+        setSecretMessage(defaultAddress)
         setPublicKey(undefined)
         setEncryptedMessage(undefined)
         setIpfsUrl(undefined)
@@ -89,7 +98,13 @@ export default function Wallet() {
         {address && !encryptedMessage && (
           <SecretForm>
             <SecretInput
-              placeholder="Enter your secret message"
+              placeholder="Name: {}
+              House Number/Name: {}
+              Street Name: {}
+              Town/City: {}
+              State/County: {}
+              Postcode: {}
+              Country: {}"
               value={secretMessage}
               onChange={(e) => setSecretMessage(e.target.value)}
             />
